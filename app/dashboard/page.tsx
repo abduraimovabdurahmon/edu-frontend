@@ -71,7 +71,7 @@ export default function StudentDashboard() {
                 Talabalarimiz haqida
               </h3>
               <p className={`text-sm mt-2 ${theme === "light" ? "text-gray-600" : "text-gray-200"}`}>
-                Dunyo bo'ylab minglab o'quvchilar o'z malakalarini oshirish va ta'lim maqsadlariga erishish uchun bizning platformamizdan foydalanmoqda.
+                Dunyo bo&apos;ylab minglab o&apos;quvchilar o&apos;z malakalarini oshirish va ta&apos;lim maqsadlariga erishish uchun bizning platformamizdan foydalanmoqda.
               </p>
             </section>
 
@@ -82,7 +82,7 @@ export default function StudentDashboard() {
                 About Our Courses
               </h3>
               <p className={`text-sm mt-2 ${theme === "light" ? "text-gray-600" : "text-gray-200"}`}>
-                Biz sizga turli sohalarda ko'nikmalarni egallashga yordam berish uchun mutaxassislar tomonidan tayyorlangan turli xil kurslarni taklif qilamiz.
+                Biz sizga turli sohalarda ko&apos;nikmalarni egallashga yordam berish uchun mutaxassislar tomonidan tayyorlangan turli xil kurslarni taklif qilamiz.
               </p>
             </section>
 
@@ -101,10 +101,10 @@ export default function StudentDashboard() {
             <section className={`p-4 rounded-lg shadow-sm ${theme === "light" ? "bg-purple-50" : "bg-purple-800"}`}>
               <h3 className={`text-xl font-semibold text-gray-700 flex items-center gap-2 ${theme === "light" ? "text-purple-600" : "text-purple-300"}`}>
                 <FileText className="h-5 w-5" />
-                Istalgan vaqtda, istalgan joyda o'rganing
+                Istalgan vaqtda, istalgan joyda o&apos;rganing
               </h3>
               <p className={`text-sm mt-2 ${theme === "light" ? "text-gray-600" : "text-gray-200"}`}>
-                Qaerda bo'lishingizdan qat'i nazar, istalgan qurilmadan kurslarga kiring va o'z tezligingizda o'rganing.
+                Qaerda bo&apos;lishingizdan qat&apos;i nazar, istalgan qurilmadan kurslarga kiring va o&apos;z tezligingizda o&apos;rganing.
               </p>
             </section>
           </div>
@@ -131,7 +131,7 @@ export default function StudentDashboard() {
                       Full-Stack Web Development
                     </h4>
                     <p className="text-sm text-gray-600 mt-2">
-                      Dasturlash va veb-ishlab chiqish bo'yicha chuqur bilimlar oling va to'liq stack bo'yicha malakali mutaxassis bo'ling.
+                      Dasturlash va veb-ishlab chiqish bo&apos;yicha chuqur bilimlar oling va to&apos;liq stack bo&apos;yicha malakali mutaxassis bo&apos;ling.
                     </p>
                   </div>
                 </div>
@@ -150,7 +150,7 @@ export default function StudentDashboard() {
                       Data Science and AI
                     </h4>
                     <p className="text-sm text-gray-600 mt-2">
-                      Sun'iy intellekt va ma'lumotlar tahlili bilan bog'liq eng zamonaviy ko'nikmalarni o'rganing.
+                      Sun&apos;iy intellekt va ma&apos;lumotlar tahlili bilan bog&apos;liq eng zamonaviy ko&apos;nikmalarni o&apos;rganing.
                     </p>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ export default function StudentDashboard() {
                       Mobile App Development
                     </h4>
                     <p className="text-sm text-gray-600 mt-2">
-                      Mobil ilovalar yaratish bo'yicha bilimingizni oshirib, Android va iOS platformalarida muvaffaqiyatli ilovalar yarating.
+                      Mobil ilovalar yaratish bo&apos;yicha bilimingizni oshirib, Android va iOS platformalarida muvaffaqiyatli ilovalar yarating.
                     </p>
                   </div>
                 </div>
@@ -188,7 +188,7 @@ export default function StudentDashboard() {
                       Digital Marketing
                     </h4>
                     <p className="text-sm text-gray-600 mt-2">
-                      Onlayn marketing, SEO, va reklama strategiyalarini o'rganing.
+                      Onlayn marketing, SEO, va reklama strategiyalarini o&apos;rganing.
                     </p>
                   </div>
                 </div>

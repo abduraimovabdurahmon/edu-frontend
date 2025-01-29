@@ -13,20 +13,20 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import {
-  FileText,
-  BookOpen,
-  Users,
-  Info,
-} from "lucide-react";
-import Link from "next/link"; // Import Link
-import { useTheme } from "next-themes"; // Import useTheme for theme handling
+// import {
+//   FileText,
+//   BookOpen,
+//   Users,
+//   Info,
+// } from "lucide-react";
+// import Link from "next/link"; // Import Link
+// import { useTheme } from "next-themes"; // Import useTheme for theme handling
 
 import { useState, useEffect } from "react"; // Import useState and useEffect
 
 export default function StudentDashboard() {
   const [isMounted, setIsMounted] = useState(false);
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
 
   // Set isMounted to true when the component has mounted on the client side
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function StudentDashboard() {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/dashboard/help">Qo'llab Quvvatlash</BreadcrumbLink>
+                <BreadcrumbLink href="/dashboard/help">Qo&apos;llab Quvvatlash</BreadcrumbLink>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
