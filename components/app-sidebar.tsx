@@ -39,27 +39,27 @@ const data = {
     },
     {
       title: "Mening Kurslarim",
-      url: "#",
+      url: "/dashboard/my-courses",
       icon: BookOpen,
     },
     {
       title: "Vazifalar",
-      url: "#",
+      url: "/dashboard/assignments",
       icon: ClipboardList,
     },
     {
       title: "Testlar",
-      url: "#",
+      url: "/dashboard/questions",
       icon: FileEdit,
     },
     {
       title: "Forum",
-      url: "#",
+      url: "https://arabify.zulipchat.com",
       icon: Users,
     },
     {
       title: "Yordam va Qo‘llab-quvvatlash",
-      url: "#",
+      url: "/dashboard/help",
       icon: HelpCircle,
     },
   ],
