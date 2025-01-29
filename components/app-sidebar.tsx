@@ -8,12 +8,8 @@ import {
   FileEdit,
   Users,
   HelpCircle,
-  Moon,
-  Sun,
   LogOutIcon,
-  LogOut
 } from "lucide-react"
-import { useTheme } from "next-themes"
 
 import {
   Sidebar,
@@ -68,12 +64,6 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { theme, setTheme } = useTheme(); // Using next-themes hook to get and set theme
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
   return (
     <Sidebar variant="floating" {...props}>
       <SidebarHeader>
