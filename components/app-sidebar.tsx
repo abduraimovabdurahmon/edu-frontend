@@ -14,7 +14,10 @@ import {
   ShieldCheck,
   HelpCircle,
   LogOut,
+  Moon,
+  Sun
 } from "lucide-react"
+import { useTheme } from "next-themes"
 
 import {
   Sidebar,
@@ -26,9 +29,14 @@ import {
   SidebarMenuItem,
   SidebarFooter,
 } from "@/components/ui/sidebar"
-import { title } from "process"
+import { DropdownMenu } from "./ui/dropdown-menu"
 
 const data = {
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
   navMain: [
     {
       title: "Bosh sahifa",
@@ -68,8 +76,13 @@ const data = {
   ],
 }
 
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { theme, setTheme } = useTheme(); // Using next-themes hook to get and set theme
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
     <Sidebar variant="floating" {...props}>
       <SidebarHeader>
@@ -102,11 +115,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <div className="mt-4 p-2 cursor-pointer flex items-center space-x-2 text-red-500">
-          <LogOut className="w-5 h-5" />
-          <span>Tizimdan chiqish</span>
+        <div className="p-2 flex justify-center">
+          <button
+            onClick={toggleTheme}
+            className="flex items-center space-x-2 text-sm font-medium"
+          >
+            {theme === "dark" ? (
+              <Sun className="w-5 h-5 text-yellow-500" />
+            ) : (
+              <Moon className="w-5 h-5 text-gray-500" />
+            )}
+            <span className="text-gray-500 dark:text-gray-300">
+              {theme === "dark" ? "Kunduzgi rejim" : "Tungi rejim"}
+            </span>
+          </button>
         </div>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

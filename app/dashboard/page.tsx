@@ -1,3 +1,4 @@
+"use client"
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
@@ -21,8 +22,24 @@ import {
   Lock,
 } from "lucide-react";
 import Link from "next/link"; // Import Link
+import { useTheme } from "next-themes"; // Import useTheme for theme handling
+
+import { useState, useEffect } from "react"; // Import useState and useEffect
 
 export default function StudentDashboard() {
+  const [isMounted, setIsMounted] = useState(false);
+  const { theme } = useTheme();
+
+  // Set isMounted to true when the component has mounted on the client side
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Avoid rendering the theme-based content until after mount to prevent SSR mismatch
+  if (!isMounted) {
+    return null; // Or you can return a loading state or placeholder
+  }
+
   return (
     <SidebarProvider
       style={{
@@ -47,53 +64,53 @@ export default function StudentDashboard() {
           {/* Overview Stats (side by side) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Section 1: About Our Students */}
-            <section className="p-4 bg-blue-50 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-gray-700 flex items-center gap-2">
-                <Users className="h-5 w-5 text-blue-600" />
+            <section className={`p-4 rounded-lg shadow-sm ${theme === "light" ? "bg-blue-50" : "bg-blue-800"}`}>
+              <h3 className={`text-xl font-semibold text-gray-700 flex items-center gap-2 ${theme === "light" ? "text-blue-600" : "text-blue-300"}`}>
+                <Users className="h-5 w-5" />
                 Talabalarimiz haqida
               </h3>
-              <p className="text-sm text-gray-600 mt-2">
+              <p className={`text-sm mt-2 ${theme === "light" ? "text-gray-600" : "text-gray-200"}`}>
                 Dunyo bo'ylab minglab o'quvchilar o'z malakalarini oshirish va ta'lim maqsadlariga erishish uchun bizning platformamizdan foydalanmoqda.
               </p>
             </section>
 
             {/* Section 2: About Our Courses */}
-            <section className="p-4 bg-green-50 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-gray-700 flex items-center gap-2">
-                <BookOpen className="h-5 w-5 text-green-600" />
+            <section className={`p-4 rounded-lg shadow-sm ${theme === "light" ? "bg-green-50" : "bg-green-800"}`}>
+              <h3 className={`text-xl font-semibold text-gray-700 flex items-center gap-2 ${theme === "light" ? "text-green-600" : "text-green-300"}`}>
+                <BookOpen className="h-5 w-5" />
                 About Our Courses
               </h3>
-              <p className="text-sm text-gray-600 mt-2">
+              <p className={`text-sm mt-2 ${theme === "light" ? "text-gray-600" : "text-gray-200"}`}>
                 Biz sizga turli sohalarda ko'nikmalarni egallashga yordam berish uchun mutaxassislar tomonidan tayyorlangan turli xil kurslarni taklif qilamiz.
               </p>
             </section>
 
             {/* Section 3: Platform Features */}
-            <section className="p-4 bg-yellow-50 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-gray-700 flex items-center gap-2">
-                <Info className="h-5 w-5 text-yellow-600" />
+            <section className={`p-4 rounded-lg shadow-sm ${theme === "light" ? "bg-yellow-50" : "bg-yellow-800"}`}>
+              <h3 className={`text-xl font-semibold text-gray-700 flex items-center gap-2 ${theme === "light" ? "text-yellow-600" : "text-yellow-300"}`}>
+                <Info className="h-5 w-5" />
                 Platformaning xususiyatlari
               </h3>
-              <p className="text-sm text-gray-600 mt-2">
+              <p className={`text-sm mt-2 ${theme === "light" ? "text-gray-600" : "text-gray-200"}`}>
                 Bizning platformamiz muvaffaqiyatga erishishingizga yordam beradigan interaktiv vositalar, taraqqiyotni kuzatish va sertifikatlarni taklif etadi.
               </p>
             </section>
 
             {/* Section 4: Flexibility */}
-            <section className="p-4 bg-purple-50 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-gray-700 flex items-center gap-2">
-                <FileText className="h-5 w-5 text-purple-600" />
+            <section className={`p-4 rounded-lg shadow-sm ${theme === "light" ? "bg-purple-50" : "bg-purple-800"}`}>
+              <h3 className={`text-xl font-semibold text-gray-700 flex items-center gap-2 ${theme === "light" ? "text-purple-600" : "text-purple-300"}`}>
+                <FileText className="h-5 w-5" />
                 Istalgan vaqtda, istalgan joyda o'rganing
               </h3>
-              <p className="text-sm text-gray-600 mt-2">
+              <p className={`text-sm mt-2 ${theme === "light" ? "text-gray-600" : "text-gray-200"}`}>
                 Qaerda bo'lishingizdan qat'i nazar, istalgan qurilmadan kurslarga kiring va o'z tezligingizda o'rganing.
               </p>
             </section>
           </div>
 
           {/* Most Popular Courses Section */}
-          <div className="p-4 bg-white rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+          <div className={`p-4 rounded-lg shadow-sm ${theme === "light" ? "bg-white" : "bg-gray-800"}`}>
+            <h2 className={`text-2xl font-semibold ${theme === "light" ? "text-gray-700" : "text-gray-300"} mb-4`}>
               Eng Mashhur Kurslar
             </h2>
 
