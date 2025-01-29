@@ -26,6 +26,7 @@ import {
   SidebarMenuItem,
   SidebarFooter,
 } from "@/components/ui/sidebar"
+import { title } from "process"
 
 const data = {
   navMain: [
@@ -33,6 +34,11 @@ const data = {
       title: "Bosh sahifa",
       url: "#",
       icon: Home,
+    },
+    {
+      title: "Barcha Kurslar",
+      url: "#",
+      icon: BookOpen
     },
     {
       title: "Mening Kurslarim",
@@ -45,39 +51,14 @@ const data = {
       icon: ClipboardList,
     },
     {
-      title: "Testlar va Imtihonlar",
+      title: "Testlar",
       url: "#",
       icon: FileEdit,
     },
     {
-      title: "Baholar va Taraqqiyot",
-      url: "#",
-      icon: GraduationCap,
-    },
-    {
-      title: "Munozara Forumi",
+      title: "Forum",
       url: "#",
       icon: Users,
-    },
-    {
-      title: "Xabarlar",
-      url: "#",
-      icon: MessageSquare,
-    },
-    {
-      title: "Bildirishnomalar",
-      url: "#",
-      icon: Bell,
-    },
-    {
-      title: "Sertifikatlar va Yutuqlar",
-      url: "#",
-      icon: ShieldCheck,
-    },
-    {
-      title: "Sozlamalar",
-      url: "#",
-      icon: Settings,
     },
     {
       title: "Yordam va Qo‘llab-quvvatlash",
