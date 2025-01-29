@@ -17,15 +17,19 @@ import {
   BookOpen,
   Users,
   Info,
+  Sun,
+  Moon,
 } from "lucide-react";
 import Link from "next/link"; // Import Link
 import { useTheme } from "next-themes"; // Import useTheme for theme handling
 
 import { useState, useEffect } from "react"; // Import useState and useEffect
+import AppHeader from "@/components/app-header";
 
 export default function StudentDashboard() {
   const [isMounted, setIsMounted] = useState(false);
-  const { theme } = useTheme();
+  const { theme } = useTheme(); // Using next-themes hook to get and set theme
+
 
   // Set isMounted to true when the component has mounted on the client side
   useEffect(() => {
@@ -45,17 +49,17 @@ export default function StudentDashboard() {
     >
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 px-4">
-          <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 h-4" />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/dashboard">Bosh sahifa</BreadcrumbLink>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </header>
+
+        {/* header */}
+        <AppHeader 
+          breadcrumbs={[
+            {
+              href: "/dashboard",
+              title: "Bosh sahifa"
+            }
+          ]}
+        />
+        {/* header */}
 
         {/* shu joyidan boshlandi */}
 

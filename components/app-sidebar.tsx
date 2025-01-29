@@ -9,7 +9,9 @@ import {
   Users,
   HelpCircle,
   Moon,
-  Sun
+  Sun,
+  LogOutIcon,
+  LogOut
 } from "lucide-react"
 import { useTheme } from "next-themes"
 
@@ -104,21 +106,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <div className="p-2 flex justify-center">
-          <button
-            onClick={toggleTheme}
-            className="flex items-center space-x-2 text-sm font-medium"
-          >
-            {theme === "dark" ? (
-              <Sun className="w-5 h-5 text-yellow-500" />
-            ) : (
-              <Moon className="w-5 h-5 text-gray-500" />
-            )}
-            <span className="text-gray-500 dark:text-gray-300">
-              {theme === "dark" ? "Kunduzgi rejim" : "Tungi rejim"}
-            </span>
-          </button>
-        </div>
+        {/* logout */}
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <a href="#" className="flex items-center space-x-2 font-medium text-red-400">
+                <LogOutIcon className="w-5 h-5" />
+                <span>Chiqish</span>
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
   );

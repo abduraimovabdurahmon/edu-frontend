@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import AppHeader from "@/components/app-header";
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
@@ -40,34 +41,32 @@ export default function StudentDashboard() {
 
   return (
     <SidebarProvider
-      style={{
-        "--sidebar-width": "19rem",
-      } as React.CSSProperties}
+      style={
+        {
+          "--sidebar-width": "19rem",
+        } as React.CSSProperties
+      }
     >
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 px-4">
-          <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 h-4" />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/dashboard">Bosh sahifa</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/dashboard/courses">Barcha kurslar</BreadcrumbLink>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </header>
+        {/* header */}
+        <AppHeader
+          breadcrumbs={[
+            {
+              href: "/dashboard",
+              title: "Bosh sahifa",
+            },
+            {
+              href: "/dashboard/courses",
+              title: "Barcha Kurslar",
+            }
+          ]}
+        />
+        {/* header */}
 
         {/* shu joyidan boshlandi */}
 
-
-        <div className="flex flex-1 flex-col gap-6 p-6 pt-0">
-
-        </div>
+        <div className="flex flex-1 flex-col gap-6 p-6 pt-0"></div>
       </SidebarInset>
     </SidebarProvider>
   );
