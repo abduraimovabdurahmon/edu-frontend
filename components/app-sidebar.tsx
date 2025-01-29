@@ -6,14 +6,8 @@ import {
   BookOpen,
   ClipboardList,
   FileEdit,
-  GraduationCap,
   Users,
-  MessageSquare,
-  Bell,
-  Settings,
-  ShieldCheck,
   HelpCircle,
-  LogOut,
   Moon,
   Sun
 } from "lucide-react"
@@ -29,23 +23,18 @@ import {
   SidebarMenuItem,
   SidebarFooter,
 } from "@/components/ui/sidebar"
-import { DropdownMenu } from "./ui/dropdown-menu"
+
 
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
     {
       title: "Bosh sahifa",
-      url: "#",
+      url: "/dashboard",
       icon: Home,
     },
     {
       title: "Barcha Kurslar",
-      url: "#",
+      url: "/dashboard/courses",
       icon: BookOpen
     },
     {

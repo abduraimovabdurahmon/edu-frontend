@@ -17,9 +17,6 @@ import {
   BookOpen,
   Users,
   Info,
-  Code,
-  DollarSign,
-  Lock,
 } from "lucide-react";
 import Link from "next/link"; // Import Link
 import { useTheme } from "next-themes"; // Import useTheme for theme handling
@@ -59,6 +56,10 @@ export default function StudentDashboard() {
             </BreadcrumbList>
           </Breadcrumb>
         </header>
+
+        {/* shu joyidan boshlandi */}
+
+
         <div className="flex flex-1 flex-col gap-6 p-6 pt-0">
 
           {/* Overview Stats (side by side) */}
@@ -109,16 +110,17 @@ export default function StudentDashboard() {
           </div>
 
           {/* Most Popular Courses Section */}
-          <div className={`p-4 rounded-lg shadow-sm ${theme === "light" ? "bg-white" : "bg-gray-800"}`}>
+          <div className={`p-4 rounded-lg shadow-sm  bg-sidebar`}>
             <h2 className={`text-2xl font-semibold ${theme === "light" ? "text-gray-700" : "text-gray-300"} mb-4`}>
               Eng Mashhur Kurslar
             </h2>
 
             {/* Course List */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
               {/* Course 1 */}
               <Link href="/courses/full-stack-web-development">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
                   <img
                     src="/course.webp"
                     alt="Full-Stack Web Development"
@@ -137,8 +139,8 @@ export default function StudentDashboard() {
 
               {/* Course 2 */}
               <Link href="/courses/data-science-and-ai">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                  <img
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <img
                     src="/course.webp"
                     alt="Data Science and AI"
                     className="w-full h-48 object-cover"
@@ -156,8 +158,8 @@ export default function StudentDashboard() {
 
               {/* Course 3 */}
               <Link href="/courses/mobile-app-development">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                  <img
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <img
                     src="/course.webp"
                     alt="Mobile App Development"
                     className="w-full h-48 object-cover"
@@ -175,8 +177,8 @@ export default function StudentDashboard() {
 
               {/* Course 4 */}
               <Link href="/courses/digital-marketing">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                  <img
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <img
                     src="/course.webp"
                     alt="Digital Marketing"
                     className="w-full h-48 object-cover"
