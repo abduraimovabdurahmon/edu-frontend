@@ -1,31 +1,17 @@
-"use client"
+"use client";
 import { AppSidebar } from "@/components/app-sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-import {
-  FileText,
-  BookOpen,
-  Users,
-  Info,
-} from "lucide-react";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { FileText, BookOpen, Users, Info } from "lucide-react";
 import Link from "next/link"; // Import Link
 import { useTheme } from "next-themes"; // Import useTheme for theme handling
 
 import { useState, useEffect } from "react"; // Import useState and useEffect
+import AppHeader from "@/components/app-header";
+import Image from "next/image";
 
 export default function StudentDashboard() {
   const [isMounted, setIsMounted] = useState(false);
-  const { theme } = useTheme();
+  const { theme } = useTheme(); // Using next-themes hook to get and set theme
 
   // Set isMounted to true when the component has mounted on the client side
   useEffect(() => {
@@ -39,91 +25,154 @@ export default function StudentDashboard() {
 
   return (
     <SidebarProvider
-      style={{
-        "--sidebar-width": "19rem",
-      } as React.CSSProperties}
+      style={
+        {
+          "--sidebar-width": "19rem",
+        } as React.CSSProperties
+      }
     >
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 px-4">
-          <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 h-4" />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/dashboard">Bosh sahifa</BreadcrumbLink>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </header>
+        {/* header */}
+        <AppHeader
+          breadcrumbs={[
+            {
+              href: "/dashboard",
+              title: "Bosh sahifa",
+            },
+          ]}
+        />
+        {/* header */}
 
         {/* shu joyidan boshlandi */}
-
-
         <div className="flex flex-1 flex-col gap-6 p-6 pt-0">
-
           {/* Overview Stats (side by side) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Section 1: About Our Students */}
-            <section className={`p-4 rounded-lg shadow-sm ${theme === "light" ? "bg-blue-50" : "bg-blue-800"}`}>
-              <h3 className={`text-xl font-semibold text-gray-700 flex items-center gap-2 ${theme === "light" ? "text-blue-600" : "text-blue-300"}`}>
+            <section
+              className={`p-4 rounded-lg shadow-sm ${
+                theme === "light" ? "bg-blue-50" : "bg-[#FFAA00]"
+              }`}
+            >
+              <h3
+                className={`text-xl font-bold flex items-center gap-2 ${
+                  theme === "light" ? "text-blue-600" : "text-[#0D0D0D]"
+                }`}
+              >
                 <Users className="h-5 w-5" />
                 Talabalarimiz haqida
               </h3>
-              <p className={`text-sm mt-2 ${theme === "light" ? "text-gray-600" : "text-gray-200"}`}>
-                Dunyo bo&apos;ylab minglab o&apos;quvchilar o&apos;z malakalarini oshirish va ta&apos;lim maqsadlariga erishish uchun bizning platformamizdan foydalanmoqda.
+              <p
+                className={`text-sm mt-2 ${
+                  theme === "light" ? "text-gray-600" : "text-gray-100"
+                }`}
+              >
+                Dunyo bo&apos;ylab minglab o&apos;quvchilar o&apos;z
+                malakalarini oshirish va ta&apos;lim maqsadlariga erishish uchun
+                bizning platformamizdan foydalanmoqda.
               </p>
             </section>
 
             {/* Section 2: About Our Courses */}
-            <section className={`p-4 rounded-lg shadow-sm ${theme === "light" ? "bg-green-50" : "bg-green-800"}`}>
-              <h3 className={`text-xl font-semibold text-gray-700 flex items-center gap-2 ${theme === "light" ? "text-green-600" : "text-green-300"}`}>
+            <section
+              className={`p-4 rounded-lg shadow-sm ${
+                theme === "light" ? "bg-green-50" : "bg-[#FFAA00]"
+              }`}
+            >
+              <h3
+                className={`text-xl font-bold flex items-center gap-2 ${
+                  theme === "light" ? "text-green-600" : "text-[#0D0D0D]"
+                }`}
+              >
                 <BookOpen className="h-5 w-5" />
                 About Our Courses
               </h3>
-              <p className={`text-sm mt-2 ${theme === "light" ? "text-gray-600" : "text-gray-200"}`}>
-                Biz sizga turli sohalarda ko&apos;nikmalarni egallashga yordam berish uchun mutaxassislar tomonidan tayyorlangan turli xil kurslarni taklif qilamiz.
+              <p
+                className={`text-sm mt-2 ${
+                  theme === "light" ? "text-gray-600" : "text-gray-100"
+                }`}
+              >
+                Biz sizga turli sohalarda ko&apos;nikmalarni egallashga yordam
+                berish uchun mutaxassislar tomonidan tayyorlangan turli xil
+                kurslarni taklif qilamiz.
               </p>
             </section>
 
             {/* Section 3: Platform Features */}
-            <section className={`p-4 rounded-lg shadow-sm ${theme === "light" ? "bg-yellow-50" : "bg-yellow-800"}`}>
-              <h3 className={`text-xl font-semibold text-gray-700 flex items-center gap-2 ${theme === "light" ? "text-yellow-600" : "text-yellow-300"}`}>
+            <section
+              className={`p-4 rounded-lg shadow-sm ${
+                theme === "light" ? "bg-yellow-50" : "bg-[#FFAA00]"
+              }`}
+            >
+              <h3
+                className={`text-xl font-bold flex items-center gap-2 ${
+                  theme === "light" ? "text-yellow-600" : "text-[#0D0D0D]"
+                }`}
+              >
                 <Info className="h-5 w-5" />
                 Platformaning xususiyatlari
               </h3>
-              <p className={`text-sm mt-2 ${theme === "light" ? "text-gray-600" : "text-gray-200"}`}>
-                Bizning platformamiz muvaffaqiyatga erishishingizga yordam beradigan interaktiv vositalar, taraqqiyotni kuzatish va sertifikatlarni taklif etadi.
+              <p
+                className={`text-sm mt-2 ${
+                  theme === "light" ? "text-gray-600" : "text-gray-100"
+                }`}
+              >
+                Bizning platformamiz muvaffaqiyatga erishishingizga yordam
+                beradigan interaktiv vositalar, taraqqiyotni kuzatish va
+                sertifikatlarni taklif etadi.
               </p>
             </section>
 
             {/* Section 4: Flexibility */}
-            <section className={`p-4 rounded-lg shadow-sm ${theme === "light" ? "bg-purple-50" : "bg-purple-800"}`}>
-              <h3 className={`text-xl font-semibold text-gray-700 flex items-center gap-2 ${theme === "light" ? "text-purple-600" : "text-purple-300"}`}>
+            <section
+              className={`p-4 rounded-lg shadow-sm ${
+                theme === "light" ? "bg-purple-50" : "bg-[#FFAA00]"
+              }`}
+            >
+              <h3
+                className={`text-xl font-bold flex items-center gap-2 ${
+                  theme === "light" ? "text-purple-600" : "text-[#0D0D0D]"
+                }`}
+              >
                 <FileText className="h-5 w-5" />
                 Istalgan vaqtda, istalgan joyda o&apos;rganing
               </h3>
-              <p className={`text-sm mt-2 ${theme === "light" ? "text-gray-600" : "text-gray-200"}`}>
-                Qaerda bo&apos;lishingizdan qat&apos;i nazar, istalgan qurilmadan kurslarga kiring va o&apos;z tezligingizda o&apos;rganing.
+              <p
+                className={`text-sm mt-2 ${
+                  theme === "light" ? "text-gray-600" : "text-gray-100"
+                }`}
+              >
+                Qaerda bo&apos;lishingizdan qat&apos;i nazar, istalgan
+                qurilmadan kurslarga kiring va o&apos;z tezligingizda
+                o&apos;rganing.
               </p>
             </section>
           </div>
 
+
+
+
+
+
           {/* Most Popular Courses Section */}
           <div className={`p-4 rounded-lg shadow-sm  bg-sidebar`}>
-            <h2 className={`text-2xl font-semibold ${theme === "light" ? "text-gray-700" : "text-gray-300"} mb-4`}>
+            <h2
+              className={`text-2xl font-semibold ${
+                theme === "light" ? "text-gray-700" : "text-gray-300"
+              } mb-4`}
+            >
               Eng Mashhur Kurslar
             </h2>
 
             {/* Course List */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-              {/* Course 1 */}
               <Link href="/courses/full-stack-web-development">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                  <img
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                  <Image
                     src="/course.webp"
                     alt="Full-Stack Web Development"
+                    width={500} // Set appropriate width
+                    height={300} // Set appropriate height
                     className="w-full h-48 object-cover"
                   />
                   <div className="p-6">
@@ -131,18 +180,20 @@ export default function StudentDashboard() {
                       Full-Stack Web Development
                     </h4>
                     <p className="text-sm text-gray-600 mt-2">
-                      Dasturlash va veb-ishlab chiqish bo&apos;yicha chuqur bilimlar oling va to&apos;liq stack bo&apos;yicha malakali mutaxassis bo&apos;ling.
+                      Dasturlash va veb-ishlab chiqish bo&apos;yicha chuqur
+                      bilimlar oling va to&apos;liq stack bo&apos;yicha malakali
+                      mutaxassis bo&apos;ling.
                     </p>
                   </div>
                 </div>
               </Link>
-
-              {/* Course 2 */}
               <Link href="/courses/data-science-and-ai">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              <img
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                  <Image
                     src="/course.webp"
                     alt="Data Science and AI"
+                    width={500}
+                    height={300}
                     className="w-full h-48 object-cover"
                   />
                   <div className="p-6">
@@ -150,18 +201,20 @@ export default function StudentDashboard() {
                       Data Science and AI
                     </h4>
                     <p className="text-sm text-gray-600 mt-2">
-                      Sun&apos;iy intellekt va ma&apos;lumotlar tahlili bilan bog&apos;liq eng zamonaviy ko&apos;nikmalarni o&apos;rganing.
+                      Sun&apos;iy intellekt va ma&apos;lumotlar tahlili bilan
+                      bog&apos;liq eng zamonaviy ko&apos;nikmalarni
+                      o&apos;rganing.
                     </p>
                   </div>
                 </div>
               </Link>
-
-              {/* Course 3 */}
               <Link href="/courses/mobile-app-development">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              <img
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                  <Image
                     src="/course.webp"
                     alt="Mobile App Development"
+                    width={500}
+                    height={300}
                     className="w-full h-48 object-cover"
                   />
                   <div className="p-6">
@@ -169,18 +222,20 @@ export default function StudentDashboard() {
                       Mobile App Development
                     </h4>
                     <p className="text-sm text-gray-600 mt-2">
-                      Mobil ilovalar yaratish bo&apos;yicha bilimingizni oshirib, Android va iOS platformalarida muvaffaqiyatli ilovalar yarating.
+                      Mobil ilovalar yaratish bo&apos;yicha bilimingizni
+                      oshirib, Android va iOS platformalarida muvaffaqiyatli
+                      ilovalar yarating.
                     </p>
                   </div>
                 </div>
               </Link>
-
-              {/* Course 4 */}
               <Link href="/courses/digital-marketing">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              <img
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                  <Image
                     src="/course.webp"
                     alt="Digital Marketing"
+                    width={500}
+                    height={300}
                     className="w-full h-48 object-cover"
                   />
                   <div className="p-6">
@@ -188,14 +243,14 @@ export default function StudentDashboard() {
                       Digital Marketing
                     </h4>
                     <p className="text-sm text-gray-600 mt-2">
-                      Onlayn marketing, SEO, va reklama strategiyalarini o&apos;rganing.
+                      Onlayn marketing, SEO, va reklama strategiyalarini
+                      o&apos;rganing.
                     </p>
                   </div>
                 </div>
               </Link>
             </div>
           </div>
-
         </div>
       </SidebarInset>
     </SidebarProvider>
