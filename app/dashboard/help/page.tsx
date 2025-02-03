@@ -27,7 +27,7 @@ export default function StudentDashboard() {
 
   // Avoid rendering the theme-based content until after mount to prevent SSR mismatch
   if (!isMounted) {
-    return null; // Or you can return a loading state or placeholder
+    return null; // Or you can return a loading state or placeholder.
   }
 
   return (

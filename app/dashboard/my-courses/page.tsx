@@ -8,153 +8,87 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar";
-// import {
-//   FileText,
-//   BookOpen,
-//   Users,
-//   Info,
-// } from "lucide-react";
-// import Link from "next/link"; // Import Link
-// import { useTheme } from "next-themes"; // Import useTheme for theme handling
+import { useState, useEffect } from "react";
+import { Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-import { useState, useEffect } from "react"; // Import useState and useEffect
+const courses = Array.from({ length: 20 }, (_, i) => ({
+  title: `Course ${i + 1}`,
+  description: `Description for course ${i + 1}. Learn about various topics in this engaging course.`,
+  price: `$${(Math.random() * 100).toFixed(2)}`,
+  rating: (Math.random() * 2 + 3).toFixed(1),
+  link: `/courses/course-${i + 1}`,
+  image: "/course.webp",
+}));
+
+const ITEMS_PER_PAGE = 20;
 
 export default function StudentDashboard() {
   const [isMounted, setIsMounted] = useState(false);
-   const { theme } = useTheme();
+  const { theme } = useTheme();
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // Set isMounted to true when the component has mounted on the client side
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Avoid rendering the theme-based content until after mount to prevent SSR mismatch
   if (!isMounted) {
-    return null; // Or you can return a loading state or placeholder
+    return null;
   }
+
+  const totalPages = Math.ceil(courses.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const displayedCourses = courses.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <SidebarProvider
-      style={
-        {
-          "--sidebar-width": "19rem",
-        } as React.CSSProperties
-      }
+      style={{ "--sidebar-width": "19rem" } as React.CSSProperties}
     >
       <AppSidebar />
       <SidebarInset>
-        {/* header */}
-        <AppHeader
+        <AppHeader 
           breadcrumbs={[
             {
               href: "/dashboard",
-              title: "Bosh sahifa",
+              title: "Bosh sahifa"
             },
             {
               href: "/dashboard/my-courses",
-              title: "Mening kurslarim",
-            },
+              title: "Mening Kurslarim"
+            }
           ]}
         />
-        {/* header */}
-
-        {/* shu joyidan boshlandi */}
-
-        <div className="flex flex-1 flex-col gap-6 p-6 pt-0"></div>
-
-        <div className={`p-4 rounded-lg shadow-sm  bg-sidebar`}>
-            <h2
-              className={`text-2xl font-semibold ${
-                theme === "light" ? "text-gray-700" : "text-gray-300"
-              } mb-4`}
-            >
-              Eng Mashhur Kurslar
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Link href="/courses/full-stack-web-development">
+        <div className="p-4 rounded-lg shadow-sm bg-sidebar border">
+          <h2 className={`text-2xl font-semibold ${theme === "light" ? "text-gray-700" : "text-gray-300"} mb-4`}>Mening Kurslarim</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {displayedCourses.map((course, index) => (
+              <Link key={index} href={course.link}>
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                  <Image
-                    src="/course.webp"
-                    alt="Full-Stack Web Development"
-                    width={500} // Set appropriate width
-                    height={300} // Set appropriate height
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h4 className="text-xl font-semibold text-gray-700">
-                      Full-Stack Web Development
-                    </h4>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Dasturlash va veb-ishlab chiqish bo&apos;yicha chuqur
-                      bilimlar oling va to&apos;liq stack bo&apos;yicha malakali
-                      mutaxassis bo&apos;ling.
-                    </p>
+                  <Image src={course.image} alt={course.title} width={400} height={200} className="w-full h-32 object-cover" />
+                  <div className="p-4">
+                    <h4 className="text-lg font-semibold text-gray-700">{course.title}</h4>
+                    <p className="text-sm text-gray-600 mt-2 line-clamp-2">{course.description}</p>
+                    <p className="text-lg font-bold text-blue-600 mt-2">{course.price}</p>
+                    <div className="flex items-center mt-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className={`h-4 w-4 ${i < Math.floor(Number(course.rating)) ? "text-yellow-400" : "text-gray-300"}`} />
+                      ))}
+                      <span className="ml-2 text-gray-600">({course.rating})</span>
+                    </div>
                   </div>
                 </div>
               </Link>
-              <Link href="/courses/data-science-and-ai">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                  <Image
-                    src="/course.webp"
-                    alt="Data Science and AI"
-                    width={500}
-                    height={300}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h4 className="text-xl font-semibold text-gray-700">
-                      Data Science and AI
-                    </h4>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Sun&apos;iy intellekt va ma&apos;lumotlar tahlili bilan
-                      bog&apos;liq eng zamonaviy ko&apos;nikmalarni
-                      o&apos;rganing.
-                    </p>
-                  </div>
-                </div>
-              </Link>
-              <Link href="/courses/mobile-app-development">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                  <Image
-                    src="/course.webp"
-                    alt="Mobile App Development"
-                    width={500}
-                    height={300}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h4 className="text-xl font-semibold text-gray-700">
-                      Mobile App Development
-                    </h4>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Mobil ilovalar yaratish bo&apos;yicha bilimingizni
-                      oshirib, Android va iOS platformalarida muvaffaqiyatli
-                      ilovalar yarating.
-                    </p>
-                  </div>
-                </div>
-              </Link>
-              <Link href="/courses/digital-marketing">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                  <Image
-                    src="/course.webp"
-                    alt="Digital Marketing"
-                    width={500}
-                    height={300}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h4 className="text-xl font-semibold text-gray-700">
-                      Digital Marketing
-                    </h4>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Onlayn marketing, SEO, va reklama strategiyalarini
-                      o&apos;rganing.
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
+            ))}
+          </div>
+          <div className="flex justify-center mt-6">
+            <Button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>
+              Previous
+            </Button>
+            <span className="mx-4 text-gray-700">Page {currentPage} of {totalPages}</span>
+            <Button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>
+              Next
+            </Button>
+          </div>
         </div>
       </SidebarInset>
     </SidebarProvider>
