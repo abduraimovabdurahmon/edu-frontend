@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Send Telegram Notification
         run: |
-          curl -X POST "https://api.telegram.org/bot7830216835:AAGxiktBZcsJ7M12UDpj-qx2gp9RgahhalM/sendMessage?chat_id=7348884625&text=newmessage"
+          curl -X POST "https://api.telegram.org/bot7830216835:AAGxiktBZcsJ7M12UDpj-qx2gp9RgahhalM/sendMessage?chat_id=7348884625&text=New commit detected in repository. ✅"
