@@ -10,9 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send Telegram Notification
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          MESSAGE="New commit to repository: ${{ github.repository }}\nCommit: ${{ github.event.head_commit.message }}\nBy: ${{ github.actor }}\nSee: ${{ github.event.head_commit.url }}"
-          curl -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=$(echo "$MESSAGE" | urlencode)"
+          curl -X POST "https://api.telegram.org/bot7830216835:AAGxiktBZcsJ7M12UDpj-qx2gp9RgahhalM/sendMessage?chat_id=7348884625&text=newmessage"
