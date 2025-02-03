@@ -1,255 +1,120 @@
 "use client";
-import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { FileText, BookOpen, Users, Info } from "lucide-react";
-import Link from "next/link"; // Import Link
-import { useTheme } from "next-themes"; // Import useTheme for theme handling
-
-import { useState, useEffect } from "react"; // Import useState and useEffect
 import AppHeader from "@/components/app-header";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import { AppSidebar } from "@/components/app-sidebar";
 import Image from "next/image";
+import {
+  SidebarInset,
+  SidebarProvider,
+} from "@/components/ui/sidebar";
+import { useState, useEffect } from "react";
+import { Star, Users, BookOpen, Info, FileText } from "lucide-react";
+
+const courses = Array.from({ length: 8 }, (_, i) => ({
+  title: `Course ${i + 1}`,
+  description: `Description for course ${i + 1}. Learn about various topics in this engaging course.`,
+  price: `$${(Math.random() * 100).toFixed(2)}`,
+  rating: (Math.random() * 2 + 3).toFixed(1),
+  link: `/courses/course-${i + 1}`,
+  image: "/course.webp",
+}));
 
 export default function StudentDashboard() {
   const [isMounted, setIsMounted] = useState(false);
-  const { theme } = useTheme(); // Using next-themes hook to get and set theme
+  const { theme } = useTheme();
 
-  // Set isMounted to true when the component has mounted on the client side
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Avoid rendering the theme-based content until after mount to prevent SSR mismatch
   if (!isMounted) {
-    return null; // Or you can return a loading state or placeholder
+    return null;
   }
 
   return (
     <SidebarProvider
-      style={
-        {
-          "--sidebar-width": "19rem",
-        } as React.CSSProperties
-      }
+      style={{ "--sidebar-width": "19rem" } as React.CSSProperties}
     >
       <AppSidebar />
       <SidebarInset>
-        {/* header */}
-        <AppHeader
+        <AppHeader 
           breadcrumbs={[
             {
               href: "/dashboard",
-              title: "Bosh sahifa",
-            },
+              title: "Bosh sahifa"
+            }
           ]}
         />
-        {/* header */}
+        
+        {/* Info Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+  {/* Card 1: Students */}
+  <section className="p-6 rounded-lg shadow-lg bg-blue-50 dark:bg-blue-900 hover:shadow-xl transition-shadow duration-300">
+    <h3 className="text-xl font-bold flex items-center gap-2 text-blue-700 dark:text-blue-200">
+      <Users className="h-5 w-5" />
+      Talabalarimiz haqida
+    </h3>
+    <p className="text-sm mt-2 text-gray-600 dark:text-gray-300">
+      Dunyo bo&apos;ylab minglab o&apos;quvchilar bizning platformamizdan foydalanmoqda.
+    </p>
+  </section>
 
-        {/* shu joyidan boshlandi */}
-        <div className="flex flex-1 flex-col gap-6 p-6 pt-0">
-          {/* Overview Stats (side by side) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Section 1: About Our Students */}
-            <section
-              className={`p-4 rounded-lg shadow-sm ${
-                theme === "light" ? "bg-blue-50" : "bg-[#FFAA00]"
-              }`}
-            >
-              <h3
-                className={`text-xl font-bold flex items-center gap-2 ${
-                  theme === "light" ? "text-blue-600" : "text-[#0D0D0D]"
-                }`}
-              >
-                <Users className="h-5 w-5" />
-                Talabalarimiz haqida
-              </h3>
-              <p
-                className={`text-sm mt-2 ${
-                  theme === "light" ? "text-gray-600" : "text-gray-100"
-                }`}
-              >
-                Dunyo bo&apos;ylab minglab o&apos;quvchilar o&apos;z
-                malakalarini oshirish va ta&apos;lim maqsadlariga erishish uchun
-                bizning platformamizdan foydalanmoqda.
-              </p>
-            </section>
+  {/* Card 2: Courses */}
+  <section className="p-6 rounded-lg shadow-lg bg-green-50 dark:bg-green-900 hover:shadow-xl transition-shadow duration-300">
+    <h3 className="text-xl font-bold flex items-center gap-2 text-green-700 dark:text-green-200">
+      <BookOpen className="h-5 w-5" />
+      Kurslarimiz haqida
+    </h3>
+    <p className="text-sm mt-2 text-gray-600 dark:text-gray-300">
+      Turli sohalarda ko&apos;nikmalarni egallashga yordam beruvchi kurslar.
+    </p>
+  </section>
 
-            {/* Section 2: About Our Courses */}
-            <section
-              className={`p-4 rounded-lg shadow-sm ${
-                theme === "light" ? "bg-green-50" : "bg-[#FFAA00]"
-              }`}
-            >
-              <h3
-                className={`text-xl font-bold flex items-center gap-2 ${
-                  theme === "light" ? "text-green-600" : "text-[#0D0D0D]"
-                }`}
-              >
-                <BookOpen className="h-5 w-5" />
-                About Our Courses
-              </h3>
-              <p
-                className={`text-sm mt-2 ${
-                  theme === "light" ? "text-gray-600" : "text-gray-100"
-                }`}
-              >
-                Biz sizga turli sohalarda ko&apos;nikmalarni egallashga yordam
-                berish uchun mutaxassislar tomonidan tayyorlangan turli xil
-                kurslarni taklif qilamiz.
-              </p>
-            </section>
+  {/* Card 3: Platform Features */}
+  <section className="p-6 rounded-lg shadow-lg bg-yellow-50 dark:bg-yellow-900 hover:shadow-xl transition-shadow duration-300">
+    <h3 className="text-xl font-bold flex items-center gap-2 text-yellow-700 dark:text-yellow-200">
+      <Info className="h-5 w-5" />
+      Platforma imkoniyatlari
+    </h3>
+    <p className="text-sm mt-2 text-gray-600 dark:text-gray-300">
+      Interaktiv vositalar, taraqqiyotni kuzatish va sertifikatlar.
+    </p>
+  </section>
 
-            {/* Section 3: Platform Features */}
-            <section
-              className={`p-4 rounded-lg shadow-sm ${
-                theme === "light" ? "bg-yellow-50" : "bg-[#FFAA00]"
-              }`}
-            >
-              <h3
-                className={`text-xl font-bold flex items-center gap-2 ${
-                  theme === "light" ? "text-yellow-600" : "text-[#0D0D0D]"
-                }`}
-              >
-                <Info className="h-5 w-5" />
-                Platformaning xususiyatlari
-              </h3>
-              <p
-                className={`text-sm mt-2 ${
-                  theme === "light" ? "text-gray-600" : "text-gray-100"
-                }`}
-              >
-                Bizning platformamiz muvaffaqiyatga erishishingizga yordam
-                beradigan interaktiv vositalar, taraqqiyotni kuzatish va
-                sertifikatlarni taklif etadi.
-              </p>
-            </section>
-
-            {/* Section 4: Flexibility */}
-            <section
-              className={`p-4 rounded-lg shadow-sm ${
-                theme === "light" ? "bg-purple-50" : "bg-[#FFAA00]"
-              }`}
-            >
-              <h3
-                className={`text-xl font-bold flex items-center gap-2 ${
-                  theme === "light" ? "text-purple-600" : "text-[#0D0D0D]"
-                }`}
-              >
-                <FileText className="h-5 w-5" />
-                Istalgan vaqtda, istalgan joyda o&apos;rganing
-              </h3>
-              <p
-                className={`text-sm mt-2 ${
-                  theme === "light" ? "text-gray-600" : "text-gray-100"
-                }`}
-              >
-                Qaerda bo&apos;lishingizdan qat&apos;i nazar, istalgan
-                qurilmadan kurslarga kiring va o&apos;z tezligingizda
-                o&apos;rganing.
-              </p>
-            </section>
-          </div>
-
-
-
-
-
-
-          {/* Most Popular Courses Section */}
-          <div className={`p-4 rounded-lg shadow-sm  bg-sidebar`}>
-            <h2
-              className={`text-2xl font-semibold ${
-                theme === "light" ? "text-gray-700" : "text-gray-300"
-              } mb-4`}
-            >
-              Eng Mashhur Kurslar
-            </h2>
-
-            {/* Course List */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Link href="/courses/full-stack-web-development">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                  <Image
-                    src="/course.webp"
-                    alt="Full-Stack Web Development"
-                    width={500} // Set appropriate width
-                    height={300} // Set appropriate height
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h4 className="text-xl font-semibold text-gray-700">
-                      Full-Stack Web Development
-                    </h4>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Dasturlash va veb-ishlab chiqish bo&apos;yicha chuqur
-                      bilimlar oling va to&apos;liq stack bo&apos;yicha malakali
-                      mutaxassis bo&apos;ling.
-                    </p>
+  {/* Card 4: Learn Anywhere */}
+  <section className="p-6 rounded-lg shadow-lg bg-purple-50 dark:bg-purple-900 hover:shadow-xl transition-shadow duration-300">
+    <h3 className="text-xl font-bold flex items-center gap-2 text-purple-700 dark:text-purple-200">
+      <FileText className="h-5 w-5" />
+      Istalgan joyda o&apos;rganing
+    </h3>
+    <p className="text-sm mt-2 text-gray-600 dark:text-gray-300">
+      Istalgan qurilmadan kurslarga kiring va o&apos;qing.
+    </p>
+  </section>
+</div>
+        {/* Courses Section */}
+        <div className="p-6 rounded-lg shadow-md  bg-sidebar border">
+          <h2 className={`text-2xl font-semibold ${theme === "light" ? "text-gray-700" : "text-gray-300"} mb-4`}>Mening Kurslarim</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {courses.map((course, index) => (
+              <Link key={index} href={course.link}>
+                <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-transform transform hover:scale-105 duration-300">
+                  <Image src={course.image} alt={course.title} width={400} height={200} className="w-full h-40 object-cover" />
+                  <div className="p-4">
+                    <h4 className="text-lg font-semibold text-gray-800 dark:text-white">{course.title}</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 line-clamp-2">{course.description}</p>
+                    <p className="text-lg font-bold text-blue-600 dark:text-yellow-400 mt-2">{course.price}</p>
+                    <div className="flex items-center mt-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className={`h-4 w-4 ${i < Math.floor(Number(course.rating)) ? "text-yellow-400" : "text-gray-300 dark:text-gray-600"}`} />
+                      ))}
+                      <span className="ml-2 text-gray-600 dark:text-gray-400">({course.rating})</span>
+                    </div>
                   </div>
                 </div>
               </Link>
-              <Link href="/courses/data-science-and-ai">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                  <Image
-                    src="/course.webp"
-                    alt="Data Science and AI"
-                    width={500}
-                    height={300}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h4 className="text-xl font-semibold text-gray-700">
-                      Data Science and AI
-                    </h4>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Sun&apos;iy intellekt va ma&apos;lumotlar tahlili bilan
-                      bog&apos;liq eng zamonaviy ko&apos;nikmalarni
-                      o&apos;rganing.
-                    </p>
-                  </div>
-                </div>
-              </Link>
-              <Link href="/courses/mobile-app-development">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                  <Image
-                    src="/course.webp"
-                    alt="Mobile App Development"
-                    width={500}
-                    height={300}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h4 className="text-xl font-semibold text-gray-700">
-                      Mobile App Development
-                    </h4>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Mobil ilovalar yaratish bo&apos;yicha bilimingizni
-                      oshirib, Android va iOS platformalarida muvaffaqiyatli
-                      ilovalar yarating.
-                    </p>
-                  </div>
-                </div>
-              </Link>
-              <Link href="/courses/digital-marketing">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                  <Image
-                    src="/course.webp"
-                    alt="Digital Marketing"
-                    width={500}
-                    height={300}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h4 className="text-xl font-semibold text-gray-700">
-                      Digital Marketing
-                    </h4>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Onlayn marketing, SEO, va reklama strategiyalarini
-                      o&apos;rganing.
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
+            ))}
           </div>
         </div>
       </SidebarInset>

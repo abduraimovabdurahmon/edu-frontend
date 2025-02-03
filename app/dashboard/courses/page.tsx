@@ -61,19 +61,19 @@ export default function StudentDashboard() {
         <div className="p-4 rounded-lg shadow-sm bg-sidebar border">
           <h2 className={`text-2xl font-semibold ${theme === "light" ? "text-gray-700" : "text-gray-300"} mb-4`}>Barcha Kurslar</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {displayedCourses.map((course, index) => (
+          {displayedCourses.map((course, index) => (
               <Link key={index} href={course.link}>
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
                   <Image src={course.image} alt={course.title} width={400} height={200} className="w-full h-32 object-cover" />
                   <div className="p-4">
-                    <h4 className="text-lg font-semibold text-gray-700">{course.title}</h4>
-                    <p className="text-sm text-gray-600 mt-2 line-clamp-2">{course.description}</p>
-                    <p className="text-lg font-bold text-blue-600 mt-2">{course.price}</p>
+                    <h4 className="text-lg font-semibold text-gray-700 dark:text-white">{course.title}</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 line-clamp-2">{course.description}</p>
+                    <p className="text-lg font-bold text-blue-600 dark:text-yellow-400 mt-2">{course.price}</p>
                     <div className="flex items-center mt-2">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className={`h-4 w-4 ${i < Math.floor(Number(course.rating)) ? "text-yellow-400" : "text-gray-300"}`} />
+                        <Star key={i} className={`h-4 w-4 ${i < Math.floor(Number(course.rating)) ? "text-yellow-400" : "text-gray-300 dark:text-gray-600"}`} />
                       ))}
-                      <span className="ml-2 text-gray-600">({course.rating})</span>
+                      <span className="ml-2 text-gray-600 dark:text-gray-400">({course.rating})</span>
                     </div>
                   </div>
                 </div>
@@ -84,7 +84,7 @@ export default function StudentDashboard() {
             <Button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>
               Previous
             </Button>
-            <span className="mx-4 text-gray-700">Page {currentPage} of {totalPages}</span>
+            <span className="mx-4 text-gray-700 dark:text-gray-300">Page {currentPage} of {totalPages}</span>
             <Button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>
               Next
             </Button>
